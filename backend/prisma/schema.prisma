@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Status {
+  REVIEWING
+  CONFIDENT
+}
+
+enum Result {
+  CORRECT
+  WRONG
+}
+
+enum Type {
+  RETRY
+  SCHEDULED
+  MANUAL
+}
+
+model User{
+  id Int @id @default(autoincrement())
+  name String
+
+  decks Deck[]
+}
+
+
+model Deck {
+  id Int @id @default(autoincrement())
+  name String
+  user_id Int 
+  
+  user User @relation(fields: [user_id], references: [id])
+
+  chapters Chapter[]
+  cards Card[]
+  subsections Subsection[]
+}
+
+model Chapter {
+  @@unique([name, deck_id])
+  @@unique([id, deck_id])
+
+  id Int @id @default(autoincrement())
+  name String
+  deck_id Int
+
+  deck Deck @relation(fields: [deck_id], references: [id])
+
+  cards Card[]
+  subsections Subsection[]
+}
+
+model Subsection {
+  @@unique([name, chapter_id])
+  @@unique([id, deck_id])
+
+  id Int @id @default(autoincrement())
+  name String
+  deck_id Int
+  chapter_id Int?
+
+  chapter Chapter? @relation(fields: [chapter_id, deck_id], references: [id, deck_id])
+  deck Deck @relation(fields: [deck_id], references: [id])
+
+  cards Card[]
+}
+
+model Card {
+
+  id Int @id @default(autoincrement())
+  question String
+  answer String
+  status Status @default(REVIEWING)
+  created_at DateTime @default(now())
+  deck_id Int
+  chapter_id Int?
+  subsection_id Int?
+
+  deck Deck @relation(fields: [deck_id], references: [id])
+  chapter Chapter? @relation(fields: [chapter_id, deck_id], references: [id, deck_id])
+  subsection Subsection? @relation(fields: [subsection_id, deck_id], references: [id, deck_id])
+
+  reviews Review[]
+}
+
+model Review {
+  id Int @id @default(autoincrement())
+  card_id Int
+  reviewed_at DateTime @default(now())
+  result Result
+  type Type
+
+  card Card @relation(fields: [card_id], references: [id])
+}
