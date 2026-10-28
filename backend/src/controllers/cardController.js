@@ -1,4 +1,3 @@
-import { count } from "node:console";
 import prisma from "../db/db";
 
 
@@ -100,47 +99,31 @@ export async function deleteCard(req, res) {
 }
 
 
-//fetching a card by it's id
-export async function fetchCard(req, res){
-    
+
+export async function fetchCards(req,res) {
     try {
-        const id = Number(req.params.id);
 
-        const card = await prisma.card.findUnique({
-            where: { id: Number(req.params.id) }
-        })
+        const { deckId } = Number(req.params.deckId);
 
-        //Check if card doesn't exist
-        if (!card) {
-        return res.status(404).json({
-            error: "Card not found",
+   
+        if (!Number.isInteger(id) || id <= 0) {
+        return res.status(400).json({
+            error: "Deck ID must be a positive integer."
         });
         }
 
-        return res.status(200).json({ message: "Card fetched successfully", card})
-    } catch(err) {
-        if (err.code === "P2025") {
-            return res.status(404).json({
-                error: "Card not found"
-            });
-        }
-
-        console.error("Card Fetching Error:", err);
-
-        return res.status(500).json({error: "Failed to fetch card."});
-    }
-}
-
-export async function fetchAllCards(req,res) {
-    try {
-        const cards = await prisma.card.findMany();
+        
+        const cards = await prisma.card.findMany({
+            where: { deck_id: deckId},
+            orderBy: { id: "asc"}
+        });
 
         return res.status(200).json({ message: "Cards fetched successfully", count: cards.length, cards});
     } catch(err) {
-        console.error("Fetch All Cards Error:", err);
+        console.error("Fetch Cards Error:", err);
 
         return res.status(500).json({
-        error: "Failed to fetch cards",
+            error: "Failed to fetch cards",
         });
 
     }

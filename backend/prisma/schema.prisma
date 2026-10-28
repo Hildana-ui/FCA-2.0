@@ -56,7 +56,7 @@ model Chapter {
   name String
   deck_id Int
 
-  deck Deck @relation(fields: [deck_id], references: [id])
+  deck Deck @relation(fields: [deck_id], references: [id], onDelete: Cascade)
 
   cards Card[]
   subsections Subsection[]
@@ -71,8 +71,8 @@ model Subsection {
   deck_id Int
   chapter_id Int?
 
-  chapter Chapter? @relation(fields: [chapter_id, deck_id], references: [id, deck_id])
-  deck Deck @relation(fields: [deck_id], references: [id])
+  chapter Chapter? @relation(fields: [chapter_id, deck_id], references: [id, deck_id], onDelete: Cascade)
+  deck Deck @relation(fields: [deck_id], references: [id], onDelete: Cascade)
 
   cards Card[]
 }
@@ -88,9 +88,9 @@ model Card {
   chapter_id Int?
   subsection_id Int?
 
-  deck Deck @relation(fields: [deck_id], references: [id])
-  chapter Chapter? @relation(fields: [chapter_id, deck_id], references: [id, deck_id])
-  subsection Subsection? @relation(fields: [subsection_id, deck_id], references: [id, deck_id])
+  deck Deck @relation(fields: [deck_id], references: [id], onDelete: Cascade)
+  chapter Chapter? @relation(fields: [chapter_id, deck_id], references: [id, deck_id], onDelete: Cascade)
+  subsection Subsection? @relation(fields: [subsection_id, deck_id], references: [id, deck_id], onDelete: Cascade)
 
   reviews Review[]
 }
@@ -102,5 +102,5 @@ model Review {
   result Result
   type Type
 
-  card Card @relation(fields: [card_id], references: [id])
+  card Card @relation(fields: [card_id], references: [id], onDelete: Cascade)
 }
