@@ -98,9 +98,10 @@ model Card {
 model Review {
   id Int @id @default(autoincrement())
   card_id Int
-  reviewed_at DateTime @default(now())
   result Result
   type Type
+  reviewed_at DateTime @default(now())
+  next_review_at DateTime?
 
   card Card @relation(fields: [card_id], references: [id], onDelete: Cascade)
 }
