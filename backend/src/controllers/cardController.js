@@ -69,7 +69,6 @@ export async function updateCard(req, res) {
 }
 
 
-
 // Delete Card
 export async function deleteCard(req, res) {
     
@@ -107,7 +106,7 @@ export async function fetchCard(req,res) {
 
         if (!Number.isInteger(cardId) || cardId <= 0) {
             return res.status(400).json({
-                error: "Deck ID must be a positive integer."
+                error: "Card ID must be a positive integer."
             });
         }
 

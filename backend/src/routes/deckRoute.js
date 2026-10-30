@@ -6,15 +6,18 @@ import { createDeck,
     fetchDecks
  } from '../controllers/deckController';
 import { fetchCards } from '../controllers/cardController';
+import { fetchChapters } from '../controllers/chapterController';
 
 const deckRouter = new express.Router();
 
 
 deckRouter.post('/', createDeck);
 deckRouter.get('/', fetchDecks);
-deckRouter.get('/:id/cards', fetchCards);
+deckRouter.get('/:deckId/cards', fetchCards);
+deckRouter.get('/:deckId/chapters', fetchChapters);
 deckRouter.put('/:id', updateDeck);
 deckRouter.delete('/:id', deleteDeck);
+
 
 
 

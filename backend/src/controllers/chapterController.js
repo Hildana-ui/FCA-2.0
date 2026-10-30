@@ -49,16 +49,60 @@ export async function createChapter(req, res) {
 }
 
 
+export async function updateChapter(req, res) {
+   try {
+		const chapterId = Number(req.params.id);
+		const { name } = req.body;
+		
+		if (typeof name !== "string" || name.trim() === "") {
+			return res.status(400).json({
+				error: "Name must be a non-empty string."
+			});
+		}
+
+		if (!Number.isInteger(chapterId) || chapterId <= 0) {
+			return res.status(400).json({
+				error: "Chapter Id must be a postive integer."
+			});
+		}
+
+		const chapter = await prisma.chapter.update({
+			where: { id: chapterId},
+			data: {
+				name: name.trim()
+			}
+		});
+
+		return res.status(200).json({ message: "Chapter updated successfully", chapter});
+    } catch(err) {
+		//Prisma error code when a query violates a unique constraint
+		if (err?.code === "P2002") {
+			return res.status(409).json({
+				error: "Chapter name already exists within deck."
+			});
+		}
+
+		if (err?.code === "P2003") {
+			return res.status(404).json({
+				error: "Deck not found."
+			});
+		}
+
+		console.error("Chapter Creation Error: ", err);
+		return res.status(500).json({ error: "Failed to create chapter."});
+    }
+}
+
 // FETCH CHAPTERS
 export async function fetchChapters(req, res) {
   try {
-    const { deckId } = Number(req.params.deckId);
+    const deckId = Number(req.params.deckId);
 
    
-	if (!Number.isInteger(id) || id <= 0) {
-	return res.status(400).json({
-		error: "Deck ID must be a positive integer."
-	});
+	if (!Number.isInteger(deckId) || deckId <= 0) {
+		return res.status(400).json({
+			error: "Deck ID must be a positive integer."
+		});
 	}
 
 
@@ -78,6 +122,39 @@ export async function fetchChapters(req, res) {
       error: "Failed to fetch chapters."
     });
   }
+}
+
+export async function deleteChapter(req, res) {
+	try {
+		const chapterId = Number(req.params.id);
+
+		if (!Number.isInteger(chapterId) || chapterId <= 0) {
+			return res.status(400).json({
+				error: "Chapter Id must be a postive integer."
+			});
+		}
+
+		const chapter = await prisma.chapter.delete({
+			where: { id: chapterId }
+		})
+
+		return res.status(200).json({
+			message: "Deleted chapter successfully.",
+			chapter
+		})
+		
+	} catch(err) {
+		if (err?.code === "P2025") {
+			return res.status(404).json({
+				error: "Card not found."
+			})
+		}
+
+		console.error("Chapter Deletion Error: ", err);
+		return res.status(500).json({
+			error: "Failed to delete chapter."
+		});
+	}
 }
 
 
