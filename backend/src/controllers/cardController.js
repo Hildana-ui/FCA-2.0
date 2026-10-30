@@ -100,16 +100,48 @@ export async function deleteCard(req, res) {
 
 
 
+export async function fetchCard(req,res) {
+    try {
+        const cardId = Number(req.params.id);
+
+
+        if (!Number.isInteger(cardId) || cardId <= 0) {
+            return res.status(400).json({
+                error: "Deck ID must be a positive integer."
+            });
+        }
+
+        const card = await prisma.card.findUnique({
+            where: { id: cardId}
+        })
+
+        if (!card) {
+            return res.status(404).json({ message: "Card not found."});
+        }
+
+        return res.status(200).json({ message: "Fetched card successfully.", card});
+
+    } catch(err) {
+         console.error("Card Fetch Error:", err);
+
+        return res.status(500).json({
+            error: "Failed to fetch card",
+        });
+    }
+}
+
+
+
 export async function fetchCards(req,res) {
     try {
 
-        const { deckId } = Number(req.params.deckId);
+        const deckId = Number(req.params.deckId);
 
    
-        if (!Number.isInteger(id) || id <= 0) {
-        return res.status(400).json({
-            error: "Deck ID must be a positive integer."
-        });
+        if (!Number.isInteger(deckId) || deckId <= 0) {
+            return res.status(400).json({
+                error: "Deck ID must be a positive integer."
+            });
         }
 
         
