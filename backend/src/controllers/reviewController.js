@@ -206,7 +206,7 @@ export async function calculateReview(req,res) {
 
 //Create review
 
-export async function createReview(card_id, result, type, next_review_at) {
+async function createReview(card_id, result, type, next_review_at) {
    
     return await prisma.review.create({
         data: {
