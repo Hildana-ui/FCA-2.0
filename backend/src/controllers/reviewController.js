@@ -79,8 +79,26 @@ export async function calculateReview(req,res) {
         //For every wrong answer the review time increments by 1 min, 5mins, 10mins then by a day
         if (result === "WRONG") {
 
+            const lastCorrect = await prisma.review.findFirst({
+                where: { 
+                    card_id,
+                    result: "CORRECT"
+                 },
+                orderBy: {
+                    reviewed_at: "desc"
+                }
+            })
+
             const wrongHistory = await prisma.review.findMany({
-                where: { card_id, result, type: type[0] }
+                where: { card_id, 
+                    result, 
+                    type: type[0],
+                    ...(lastCorrect && {
+                        reviewed_at: {
+                        gt: lastCorrect.reviewed_at
+                    }
+                    })
+                }
             })
 
             const nextReview = new Date(now);
