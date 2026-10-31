@@ -1,4 +1,4 @@
-import prisma from "../db/db";
+import prisma from "../db/db.js";
 
 
 export async function createDeck(req, res) {
@@ -27,6 +27,7 @@ export async function createDeck(req, res) {
                 user_id: userId
             }
         })
+
 
         return res.status(201).json({message: "Deck created successfully", deck});
     } catch(err) {
@@ -92,6 +93,7 @@ export async function fetchDecks(req, res) {
         return res.status(200).json({
             message: "Fetched decks successfully.", count: decks.length, decks
         });
+
 
     } catch(err) {
         console.error("Deck Fetching Error: ", err);

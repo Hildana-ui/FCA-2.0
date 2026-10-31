@@ -2,7 +2,7 @@ import express from 'express';
 import { createChapter,
     deleteChapter,
     updateChapter
- } from '../controllers/chapterController';
+ } from '../controllers/chapterController.js';
 
 
 const chapterRouter = express.Router();

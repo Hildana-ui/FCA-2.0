@@ -1,4 +1,4 @@
-import prisma from "../db/db";
+import prisma from "../db/db.js";
 
 
 export async function calculateReview(req,res) {
@@ -54,8 +54,6 @@ export async function calculateReview(req,res) {
         const isDue = scheduleAnchor
             ? now >= scheduleAnchor.next_review_at
             : false;
-
-        
 
 
          if (!review && result === "CORRECT") {
@@ -216,4 +214,50 @@ async function createReview(card_id, result, type, next_review_at) {
             next_review_at   
         }
     });    
+}
+
+
+export async function cardReviewHistory(req, res) {
+    try {
+
+        const { cardId }= req.query;
+
+        if (cardId !== undefined) {
+            const id = Number(cardId);
+            if (!Number.isInteger(id) || id <= 0) {
+                return res.status(400).json({
+                    error: "Card ID must be a positive integer."
+                })
+            }
+
+            const reviewHistory = await prisma.review.findMany({
+                where: { card_id: id }
+            })
+
+            return res.status(200).json({
+                message: "Card review history fetched successfully.",
+                count: reviewHistory.length,
+                reviewHistory
+            })
+        }
+
+        const reviewHistory = await prisma.review.findMany()
+
+        return res.status(200).json({
+            message: "Card review history fetched successfully.",
+            count: reviewHistory.length,
+            reviewHistory
+        })
+    } catch(err) {
+        if (err?.code === "P2025") {
+            return res.status(404).json({
+                error: "Review with card id does not exist."
+            })
+        }
+
+        console.error("Card Review Fetch Error: ", err);
+        return res.status(500).json({
+            error: "Failed to fetch card review."
+        })
+    }
 }

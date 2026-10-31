@@ -1,4 +1,4 @@
-import prisma from "../db/db";
+import prisma from "../db/db.js";
 
 
 // Create Card

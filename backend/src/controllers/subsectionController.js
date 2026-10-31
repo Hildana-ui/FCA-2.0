@@ -1,4 +1,4 @@
-import prisma from "../db/db";
+import prisma from "../db/db.js";
 
 // CREATE SUBSECTION
 export async function createSubsection(req, res) {

@@ -1,9 +1,10 @@
 import express from 'express';
-import reviewRouter from './routes/reviewRoute';
-import cardRouter from './routes/cardRoute';
-import deckRouter from './routes/deckRoute';
-import chapterRouter from './routes/chapterRoute';
-import subsectionRouter from './routes/subsectionRoute';
+import reviewRouter from './routes/reviewRoute.js';
+import cardRouter from './routes/cardRoute.js';
+import deckRouter from './routes/deckRoute.js';
+import chapterRouter from './routes/chapterRoute.js';
+import subsectionRouter from './routes/subsectionRoute.js';
+import userRouter from './routes/userRoute.js';
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use('/decks', deckRouter);
 app.use('/subsections', subsectionRouter);
 app.use('/chapters', chapterRouter);
 app.use('/reviews', reviewRouter);
+app.use('/users', userRouter);
 
 
 export default app;

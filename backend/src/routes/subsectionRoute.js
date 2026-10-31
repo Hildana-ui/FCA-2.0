@@ -2,7 +2,7 @@ import express from 'express';
 import { createSubsection,
     updateSubsection,
     deleteSubsection
- } from "../controllers/subsectionController";
+ } from "../controllers/subsectionController.js";
 
 
 const subsectionRouter = express.Router();

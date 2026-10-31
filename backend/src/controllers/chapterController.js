@@ -1,4 +1,4 @@
-import prisma from "../db/db";
+import prisma from "../db/db.js";
 
 //Create Chapter within Deck
 export async function createChapter(req, res) {
