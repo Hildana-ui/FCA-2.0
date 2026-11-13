@@ -1,0 +1,74 @@
+@import '../../../styles/variables.css';
+
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 149px;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius-small);
+    border: 1px solid rgba(255,255,255,0.5);
+    gap: 8px;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    padding: 8px;
+}
+
+.profile-img {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-smaller);
+}
+
+.profile-name {
+    color: var(--text-slate);
+    font-weight: 500;
+    font-size: small;
+}
+
+.study-status {
+    color: var(--primary-action);
+    font-size: smaller;
+}
+
+.study-info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: var(--radius-smaller);
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    padding: 20px;
+}
+
+.study-info-container > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    color: var(--text-dim);
+    font-size: x-small;
+}
+
+.divider {
+    border-left: 1px solid var(--primary-action);
+    height: 20px;
+}
+
+.cards-due {
+    color: var(--primary-deep);
+    font-size: medium;
+    font-weight: bold;
+}
+
+.decks-active {
+    color: var(--text-heading);
+    font-size: medium;
+    font-weight: bold;
+}

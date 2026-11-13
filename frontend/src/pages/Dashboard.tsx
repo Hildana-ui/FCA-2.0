@@ -1,6 +1,13 @@
+import DashboardHeader from "../components/shared/DashboardHeader/DashboardHeader";
+
 function Dashboard() {
     return <>
-    <div>Dashboard</div>
+        <DashboardHeader
+            profileName={"Hildana"}
+            studyStatus={"active"}
+            dueCards={32}
+            activeDecks={4}
+        />
     </>
 }
 
