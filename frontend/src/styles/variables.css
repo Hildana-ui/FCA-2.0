@@ -1,0 +1,24 @@
+:root {
+    --primary-action: #ff69b4;
+    --primary-deep: #ff1493;
+    --secondary-accent: #da70d6;
+    --text-heading: #0d0211;
+    --bg-soft: #fff5f8;
+    --bg-mid: #ffffff;  
+    --bg-end: #f9f5ff;
+    --text-slate: #1e293b;         
+    --text-dim: #94a3b8;
+    --neon-line: linear-gradient(45deg, #ff69b4, #da70d6, #ff69b4);
+    --glass-morphism: rgba(255, 255, 255, 0.4);
+    --success-green: #28c840;
+    --warning-orange: #febc2e;
+    --alert-red: #ff5f57;
+
+    --primary-font: "Inter", sans-serif;
+    --glass-blur: blur(25px);
+
+    --radius-lg: 48px;
+    --radius-md: 40px;
+    --radius-small: 32px;
+    --radius-smaller: 24px;
+}
