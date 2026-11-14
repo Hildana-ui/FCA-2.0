@@ -1,0 +1,42 @@
+@import '../../../styles/variables.css';
+
+
+.section-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 149px;
+}
+
+h1 {
+    color: var(--text-heading);
+}
+
+p, .fa-magnifying-glass, .fa-filter {
+    color: var(--text-dim);
+}
+
+p {
+    font-size: small;
+}
+
+.right-section {
+    display: flex;
+    gap: 10px;
+}
+
+.fa-filter, .fa-magnifying-glass {
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    font-size: small;
+    transition: transform 0.3s ease;
+}
+
+.fa-filter:hover, .fa-magnifying-glass:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+

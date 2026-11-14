@@ -25,12 +25,12 @@ function DashboardHeader({
             </div>
             <div className="study-info-container">
                 <div>
-                    <p>CARDS DUE TODAY</p>
+                    <p className="subtitle">CARDS DUE TODAY</p>
                     <div className="cards-due">{dueCards}</div>
                 </div>
                 <span className="divider"></span>
                 <div>
-                    <p>DECKS ACTIVE</p>
+                    <p className="subtitle">DECKS ACTIVE</p>
                     <div className="decks-active">{activeDecks}</div>
                 </div>
             </div>

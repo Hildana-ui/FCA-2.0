@@ -52,8 +52,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: end;
+}
+
+.subtitle {
+    font-size: 10px;
     color: var(--text-dim);
-    font-size: x-small;
+    font-weight: 600;
 }
 
 .divider {
