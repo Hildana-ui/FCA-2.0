@@ -1,0 +1,29 @@
+@import '../../../styles/variables.css';
+
+.deck-container {
+    display: grid;
+    grid-template-columns: repeat(2, 499px);
+    gap: 90px;
+    padding: 30px 149px;
+    border: 1px solid var(--text-dim);
+    border-radius: var(--radius-lg);
+}
+
+.card-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.due-review {
+    justify-self: end;
+}
+
+.btn {
+    justify-self: end;
+}
+
+.study-btn {
+    background: var(--primary-action);
+    color: white;
+}
