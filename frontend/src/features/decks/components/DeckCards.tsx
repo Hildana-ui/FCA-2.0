@@ -17,11 +17,11 @@ function DeckCards({ decks }: DeckCardsListProps) {
         <div className='deck-container'>
             {decks?.map((deck) => (
                 <div key={deck.id} className='card-container'>
-                    {deck.to_review > 0 && <div className='due-review'>{deck.to_review} due</div>}
+                    {deck.to_review > 0 && <div className='due-review'>{deck.to_review} DUE</div>}
 
                     <div>
                         <h2 className='deck-title'>{deck.name}</h2>
-                        <p className='deck-number'>{deck.no_of_cards}</p>
+                        <p className='deck-number'><i className="fa-solid fa-layer-group"></i> {deck.no_of_cards}</p>
                     </div>
 
                     {deck.to_review > 0 ? <button className='btn study-btn'>Study Now <i className="fa-solid fa-chevron-right"></i></button> :

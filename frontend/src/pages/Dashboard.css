@@ -1,0 +1,50 @@
+@import '../styles/variables.css';
+
+
+
+.dashboard {
+    min-height: 100vh;
+    position: relative;
+    isolation: isolate;
+
+    background: linear-gradient(
+        135deg,
+        var(--bg-soft) 0%,
+        var(--bg-mid) 50%,
+        var(--bg-end) 100%
+    );
+}
+
+/* Pink orb */
+.orb-pink {
+    position: fixed;
+    top: -10%;
+    right: -10%;
+    width: 24rem;
+    height: 24rem;
+    background: rgba(251, 207, 232, 0.3);
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Purple orb */
+.orb-purple {
+    position: fixed;
+    bottom: 10%;
+    left: -5%;
+    width: 20rem;
+    height: 20rem;
+    background: rgba(243, 232, 255, 0.4);
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Actual dashboard content */
+.dashboard-content {
+    position: relative;
+    z-index: 1;
+}

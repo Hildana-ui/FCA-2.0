@@ -2,28 +2,89 @@
 
 .deck-container {
     display: grid;
-    grid-template-columns: repeat(2, 499px);
-    gap: 90px;
-    padding: 30px 149px;
-    border: 1px solid var(--text-dim);
-    border-radius: var(--radius-lg);
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(2, 480px);
+    gap:24px;
+    margin: 0px 190px;
 }
 
 .card-container {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.03),
+        0 0 0 1px rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(25px);
+    border-radius: var(--radius-smaller);
     padding: 30px;
     display: flex;
     flex-direction: column;
+    gap: 8px;
+    height: 200px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);;
+}
+
+.card-container:hover {
+    transform: translateY(-8px);
 }
 
 .due-review {
-    justify-self: end;
+    align-self: end;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--primary-action), var(--secondary-accent));
+    padding: 4px 8px;
+    border-radius: 14px;
+}
+
+.deck-title {
+    color: var(--text-slate);
 }
 
 .btn {
-    justify-self: end;
+    align-self: end;
+    height: 40px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
 }
 
 .study-btn {
-    background: var(--primary-action);
+    color: var(--primary-action);
+    font-weight: 700;
+    background: white;
+    border: 2px solid rgba(255,105,180,0.3);
+    border-radius: 14px;
+    box-shadow: 0 0 10px rgba(255,105,180,0.15);
+    width: 110px;
+
+}
+
+.view-deck-btn {
+    color: var(--text-dim);
+    font-weight: 700;
+    background: #F8FAFC;
+    border: none;
+    border-radius: 14px;
+    width: 90px;
+}
+
+.view-deck-btn:hover {
+    background: var(--text-dim);
+    color: #F8FAFC;
+}
+
+.study-btn:hover {
+    background: var(--primary-deep);
+    border: 2px solid rgba(255,105,180,0.3);
+    box-shadow: 0 0 10px rgba(255,105,180,0.15);
     color: white;
+}
+
+.btn:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
 }
