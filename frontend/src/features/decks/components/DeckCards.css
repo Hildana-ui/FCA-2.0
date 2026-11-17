@@ -7,6 +7,7 @@
     grid-template-columns: repeat(2, 480px);
     gap:24px;
     margin: 0px 190px;
+    padding-bottom: 30px;
 }
 
 .card-container {
@@ -60,7 +61,6 @@
     border-radius: 14px;
     box-shadow: 0 0 10px rgba(255,105,180,0.15);
     width: 110px;
-
 }
 
 .view-deck-btn {

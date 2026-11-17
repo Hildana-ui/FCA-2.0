@@ -2,6 +2,7 @@ import DashboardHeader from "../components/shared/DashboardHeader/DashboardHeade
 import DeckSection from "../features/decks/components/DeckSection";
 import DeckCards from "../features/decks/components/DeckCards";
 import "./Dashboard.css"
+import FAB from "../components/shared/FAB/FAB";
 
 function Dashboard() {
     const decks = [
@@ -24,6 +25,7 @@ function Dashboard() {
                 />
                 <DeckSection />
                 <DeckCards decks={decks} />
+                <FAB />
             </div>
         </main>
     </>

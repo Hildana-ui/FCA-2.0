@@ -1,0 +1,25 @@
+@import "../../../styles/variables.css";
+
+.floating-action-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 49px;
+    z-index: 10;
+    color: white;
+    background: var(--primary-deep);
+    width: 49px;
+    height: 49px;
+    border-radius: 49px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: transform 0.2s ease-in-out;
+}
+
+.floating-action-btn:hover {
+    transform: scale(1.1);
+}
