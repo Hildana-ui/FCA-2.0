@@ -88,3 +88,7 @@
     cursor: pointer;
     transform: translateY(-2px);
 }
+
+.btn:active {
+    transform: scale(0.9);
+}

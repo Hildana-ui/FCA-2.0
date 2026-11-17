@@ -23,3 +23,7 @@
 .floating-action-btn:hover {
     transform: scale(1.1);
 }
+
+.floating-action-btn:active {
+    transform: scale(0.9);
+}

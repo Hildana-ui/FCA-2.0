@@ -1,0 +1,94 @@
+@import "../../../styles/variables.css";
+
+.ddheader-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 70px;
+}
+
+.left-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.back-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,105,180,0.3);
+    box-shadow: 0 0 10px rgba(255,105,180,0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-action);
+    transition: transform 0.2s ease-in-out;
+}
+
+.back-btn:hover {
+    background: var(--primary-deep);
+    color: white;
+    cursor: pointer;
+}
+.back-btn:active {
+    transform: scale(0.9);
+}
+
+.left-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card-info-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.8;
+}
+
+.dot {
+  height: 4px;
+  width: 4px;
+  background-color: #cccccc;
+  border-radius: 50%;
+  display: inline-block; /* Allows it to sit inline with text */
+}
+
+.fa-copy, .fa-layer-group {
+    color: var(--primary-action);
+}
+
+.right-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.review-all-btn {
+    width: 150px;
+    height: 40px;
+    border-radius: var(--radius-smaller);
+    border: 1px solid var(--primary-deep);
+    background: white;
+    color: var(--primary-deep);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    transition: transform 0.2s ease-in-out;
+}
+
+.review-all-btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.review-all-btn:active {
+    transform: scale(0.9);
+}

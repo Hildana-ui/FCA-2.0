@@ -1,4 +1,5 @@
 import './DeckCards.css'
+import { useNavigate } from 'react-router';
 
 interface Deck {
     id: string,
@@ -12,7 +13,17 @@ interface DeckCardsListProps {
 }
 
 function DeckCards({ decks }: DeckCardsListProps) {
-    console.log(decks);
+    const navigate = useNavigate();
+
+    function deckRouteHandler(id:string) {
+
+        navigate(`/decks/${id}`)
+        
+    }
+
+
+
+
     return (
         <div className='deck-container'>
             {decks?.map((deck) => (
@@ -24,8 +35,8 @@ function DeckCards({ decks }: DeckCardsListProps) {
                         <p className='deck-number'><i className="fa-solid fa-layer-group"></i> {deck.no_of_cards}</p>
                     </div>
 
-                    {deck.to_review > 0 ? <button className='btn study-btn'>Study Now <i className="fa-solid fa-chevron-right"></i></button> :
-                        <button className='btn view-deck-btn'>View Deck</button>
+                    {deck.to_review > 0 ? <button className='btn study-btn' onClick={() => deckRouteHandler(deck.id)}>Study Now <i className="fa-solid fa-chevron-right"></i></button> :
+                        <button className='btn view-deck-btn' onClick={() => deckRouteHandler(deck.id)}>View Deck</button>
                     }
                 </div>
             ))}
