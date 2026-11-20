@@ -1,32 +1,42 @@
-import React from 'react';
+import NotFoundPage from '../../../pages/NotFoundPage';
+import { Link } from 'react-router';
+import { useParams } from 'react-router';
 import './DeckDetailsHeader.css';
 
-interface Card {
-    id: number,
+
+interface Deck {
+    id: string,
     name: string,
     chapters: number,
-    no_of_cards: number
+    no_of_cards: number,
 }
 
-interface DeckDetailsHeaderProps {
-    cards: Card[]
+interface DeckCardsListProps {
+    decks: Deck[];
 }
 
 
-function DeckDetailsHeader({cards} : DeckDetailsHeaderProps) {
+function DeckDetailsHeader({ decks }: DeckCardsListProps) {
+    const { deckId } = useParams();
+    const deck = decks.find((d) => d.id === deckId);
+
+    if (!deck) {
+        return (
+            <NotFoundPage page='Deck' />
+        )
+    }
+
     return (
 
         <div className='ddheader-container'>
-            {cards?.map((card) => (
-                <React.Fragment key={card.id}>
                 <div className='left-container'>
-                    <div className='back-btn'><i className="fa-solid fa-chevron-left"></i></div>
+                    <Link to="/" className='back-btn'><i className="fa-solid fa-chevron-left"></i></Link>
                     <div className='left-text-container'>
-                        <h1 className='deck-title'>{card.name}</h1>
+                        <h1 className='deck-title'>{deck?.name}</h1>
                         <div className='card-info-container'>
-                            <p className='chapter'><i className="fa-solid fa-copy"></i>{card.chapters} Chapters</p>
+                            <p className='chapter'><i className="fa-solid fa-copy"></i>{deck?.chapters} Chapters</p>
                             <span className='dot'></span>
-                            <p className='card-number'><i className="fa-solid fa-layer-group"></i>{card.no_of_cards} Cards</p>
+                            <p className='card-number'><i className="fa-solid fa-layer-group"></i>{deck?.no_of_cards} Cards</p>
                         </div>
                     </div>
                 </div>
@@ -35,8 +45,6 @@ function DeckDetailsHeader({cards} : DeckDetailsHeaderProps) {
                     <button className='review-all-btn'><i className="fa-solid fa-play"></i> Review All</button>
                     <img className='profile-img'></img>
                 </div>
-                </React.Fragment>
-            ))}
         </div>
     
     )

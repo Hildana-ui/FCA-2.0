@@ -22,8 +22,6 @@ function DeckCards({ decks }: DeckCardsListProps) {
     }
 
 
-
-
     return (
         <div className='deck-container'>
             {decks?.map((deck) => (
